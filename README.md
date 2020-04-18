@@ -4,7 +4,11 @@ Repo to collect the things I do to practice with Istio.
 
 This guide is written with the assumption that the reader already understands and uses Docker and Kubernetes.
 
+The guide has been developed using Linux. MacOS likely works fine too. Not so sure about Windows. Your mileage may vary.
+
 ## Prerequisites
+
+You need the following tools installed. Links have been provided to documentation on how to install them.
 
 - [docker](https://www.docker.com/get-started)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
