@@ -2,6 +2,15 @@
 
 Repo to collect the things I do to practice with Istio
 
+## Prerequisites
+
+- [docker](https://www.docker.com/get-started)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+- [kind](https://github.com/kubernetes-sigs/kind)
+- [istioctl](https://istio.io/docs/ops/diagnostic-tools/istioctl/)
+- [helm 3+](https://helm.sh/docs/intro/quickstart/)
+- [arkade](https://github.com/alexellis/arkade)
+
 ## Create a Kubernetes cluster using kind
 
 ```sh
@@ -48,7 +57,7 @@ Note: This costs actual money (around \$5 per month per LoadBalancer if you keep
      --token-file "$TOKEN_FILE"
    ```
 
-1. Wait for the operator to automatically create a DigitalOcean droplet. You'll know when it is ready when the `istio-ingressgateway` service in namespace `istio-system` transitions from `Pending` to `Active` and shows an external IP address.
+1. Wait for the operator to automatically create a DigitalOcean droplet. You'll know when it is ready when the `istio-ingressgateway` service in namespace `istio-system` transitions from `Pending` to `Active` and shows a public IP address.
 
 ## BookInfo Demo App
 
@@ -59,3 +68,15 @@ Note: This costs actual money (around \$5 per month per LoadBalancer if you keep
    kubectl label ns bookinfo "istio-injection=enabled"
    kubectl -n bookinfo apply -f "https://raw.githubusercontent.com/istio/istio/master/samples/bookinfo/platform/kube/bookinfo.yaml"
    ```
+
+1. Create a Gateway and VirtualService
+
+   ```sh
+   kubectl -n bookinfo apply -f "https://raw.githubusercontent.com/istio/istio/master/samples/bookinfo/networking/bookinfo-gateway.yaml"
+   ```
+
+1. Ensure the app is reachable from the internet by going to `http://<YourPublicIPAddress>/productpage`. Use the public IP address associated with the `istio-ingressgateway` service.
+
+## Mutual TLS
+
+WIP
