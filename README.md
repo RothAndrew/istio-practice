@@ -80,3 +80,13 @@ Note: This costs actual money (around \$5 per month per LoadBalancer if you keep
 ## Mutual TLS
 
 WIP
+
+## Cleanup
+
+1. Delete the kind cluster
+
+   ```sh
+   kind delete cluster
+   ```
+
+1. Delete the DigitalOcean droplet
