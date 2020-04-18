@@ -1,6 +1,8 @@
 # istio-practice
 
-Repo to collect the things I do to practice with Istio
+Repo to collect the things I do to practice with Istio.
+
+This guide is written with the assumption that the reader already understands and uses Docker and Kubernetes.
 
 ## Prerequisites
 
