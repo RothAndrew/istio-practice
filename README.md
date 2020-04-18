@@ -30,6 +30,8 @@ cd istio-practice
 kind create cluster --config kind-config.yaml
 ```
 
+Your kube context should automatically be switched. Run `kubectl get nodes` to make sure.
+
 ## Install Istio using Istio Operator
 
 1. Install the operator
@@ -59,7 +61,7 @@ Note: This costs actual money (around \$5 per month per LoadBalancer if you keep
 
 1. Set up a DigitalOcean account and create an access token
 1. Save the token in a text file
-1. Install Inlets using `arkade`
+1. Install [Inlets](https://github.com/inlets/inlets-operator) using `arkade`
 
    ```sh
    TOKEN_FILE="PathToYourTokenFileHere"
