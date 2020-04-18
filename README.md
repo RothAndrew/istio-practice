@@ -17,6 +17,13 @@ You need the following tools installed. Links have been provided to documentatio
 - [helm 3+](https://helm.sh/docs/intro/quickstart/)
 - [arkade](https://github.com/alexellis/arkade)
 
+## Clone this repository
+
+```sh
+git clone https://github.com/RothAndrew/istio-practice.git
+cd istio-practice
+```
+
 ## Create a Kubernetes cluster using kind
 
 ```sh
