@@ -4,7 +4,7 @@ Repo to collect the things I do to practice with Istio.
 
 This guide is written with the assumption that the reader already understands and uses Docker and Kubernetes.
 
-The guide has been developed using Linux. MacOS likely works fine too. Not so sure about Windows. Your mileage may vary.
+The guide has been developed using Linux and MacOS. Not so sure about Windows. Your mileage may vary.
 
 ## Prerequisites
 
@@ -91,10 +91,61 @@ Note: This costs actual money (around \$5 per month per LoadBalancer if you keep
    ```
 
 1. Ensure the app is reachable from the internet by going to `http://<YourPublicIPAddress>/productpage`. Use the public IP address associated with the `istio-ingressgateway` service.
+1. Refresh the page a few times. Notice that the stars ratings change from black to red and disappear. This is because there are 3 versions of the "reviews" service. Later we will use destination rules to fix that.
 
 ## Mutual TLS
 
-WIP
+To force mTLS cluster-wide for all services managed in the istio mesh, run
+
+```sh
+kubectl apply -n istio-system -f - <<EOF
+apiVersion: "security.istio.io/v1beta1"
+kind: "PeerAuthentication"
+metadata:
+  name: "default"
+spec:
+  mtls:
+    mode: STRICT
+EOF
+```
+
+## HTTPS (Optional, requires inlets-pro license)
+
+This section is WIP...
+
+Next, let's configure Istio to accept HTTPS traffic, and to redirect HTTP traffic to HTTPS.
+
+1. Update istio's configuration to turn on SDS and HTTPS
+
+    ```sh
+    kubectl apply -f - <<EOF
+    apiVersion: install.istio.io/v1alpha1
+    kind: IstioOperator
+    metadata:
+      namespace: istio-system
+      name: example-istiocontrolplane
+    spec:
+      profile: demo
+      values:
+        gateways:
+          istio-ingressgateway:
+            sds:
+              enabled: true
+        global:
+          k8sIngress:
+            enabled: true
+            enableHttps: true
+            gatewayName: ingressgateway
+    EOF
+    ```
+
+1. Install `cert-manager`
+
+    ```sh
+    arkade install cert-manager
+    ```
+
+1. TBD
 
 ## Cleanup
 
