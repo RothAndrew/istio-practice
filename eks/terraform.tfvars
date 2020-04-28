@@ -1,4 +1,4 @@
-region = "us-east-2"
+region = "us-east-1"
 
 availability_zones = ["us-east-2a", "us-east-2b"]
 

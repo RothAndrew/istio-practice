@@ -1,2 +1,4 @@
 .idea
 .terraform
+.terraform.tfstate.lock.info
+terraform.tfstate

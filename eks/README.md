@@ -18,6 +18,7 @@ You need the following tools installed. Links have been provided to documentatio
 - [helm 3+](https://helm.sh/docs/intro/quickstart/)
 - [arkade](https://github.com/alexellis/arkade)
 - [terraform](https://learn.hashicorp.com/terraform/getting-started/install.html)
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 
 ## Clone this repository
 
@@ -28,8 +29,14 @@ cd istio-practice
 
 ## Create a Kubernetes cluster using Terraform
 
+Note: This requires real money and access to an AWS account where you can provision resources. It will create a VPC, subnets, the cluster, EC2 resources, and IAM resources. See [main.tf](./main.tf) for full details.
+
+Make sure your AWS CLI is configured to point at the right profile. `aws sts get-caller-identity` without specifying a profile should point to where you want to deploy to.
+
 ```sh
-kind create cluster --config kind-config.yaml
+cd eks
+terraform init
+terraform apply
 ```
 
 Your kube context should automatically be switched. Run `kubectl get nodes` to make sure.
