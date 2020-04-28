@@ -6,7 +6,7 @@ This guide is written with the assumption that the reader already understands an
 
 The guide has been developed using Linux and MacOS. Not so sure about Windows. Your mileage may vary.
 
-This guide uses tools that you can run on your local development machine. For a version that uses AWS EKS, go [here](./eks/README.md)
+This guide uses a kubernetes cluster in AWS EKS. For a version that uses your local dev machine, go [here](../README.md)
 
 ## Prerequisites
 
@@ -14,10 +14,10 @@ You need the following tools installed. Links have been provided to documentatio
 
 - [docker](https://www.docker.com/get-started)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-- [kind](https://github.com/kubernetes-sigs/kind)
 - [istioctl](https://istio.io/docs/ops/diagnostic-tools/istioctl/)
 - [helm 3+](https://helm.sh/docs/intro/quickstart/)
 - [arkade](https://github.com/alexellis/arkade)
+- [terraform](https://learn.hashicorp.com/terraform/getting-started/install.html)
 
 ## Clone this repository
 
@@ -26,7 +26,7 @@ git clone https://github.com/RothAndrew/istio-practice.git
 cd istio-practice
 ```
 
-## Create a Kubernetes cluster using kind
+## Create a Kubernetes cluster using Terraform
 
 ```sh
 kind create cluster --config kind-config.yaml
